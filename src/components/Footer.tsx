@@ -11,7 +11,7 @@ interface FooterProps {
 
 export default function Footer({ onOpenDownload }: FooterProps) {
   return (
-    <footer 
+    <footer
       id="leara-footer"
       className="relative bg-[#f8fafc] border-t border-slate-200/60 pt-16 pb-12 px-6 md:px-12 lg:px-16 overflow-hidden select-none font-sans mt-auto"
     >
@@ -23,7 +23,7 @@ export default function Footer({ onOpenDownload }: FooterProps) {
       <div className="relative z-10 max-w-7xl mx-auto space-y-12">
         {/* Top Grid section */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-8">
-          
+
           {/* Column 1: Brand details replacing Foundations/Company filler */}
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center gap-2">
@@ -37,27 +37,22 @@ export default function Footer({ onOpenDownload }: FooterProps) {
           {/* Column 2: Sovereign Workspace genuine anchor links */}
           <div className="md:col-span-4 space-y-5">
             <h4 className="font-mono text-[10px] uppercase font-bold tracking-[0.15em] text-slate-500/90">
-              Sovereign Workspace
+              Navigation
             </h4>
             <ul className="space-y-3.5">
               <li>
-                <a href="#features" className="font-sans text-sm font-semibold text-slate-700/90 hover:text-slate-950 transition duration-150">
-                  Features Bento Grid
+                <a href="#hero-features" className="font-sans text-sm font-semibold text-slate-700/90 hover:text-slate-950 transition duration-150">
+                  Interactive Workspace
                 </a>
               </li>
               <li>
-                <a href="#simulator" className="font-sans text-sm font-semibold text-slate-700/90 hover:text-slate-950 transition duration-150">
-                  Interactive Simulator
+                <a href="#comparison-matrix" className="font-sans text-sm font-semibold text-slate-700/90 hover:text-slate-950 transition duration-150">
+                  System Comparison
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="font-sans text-sm font-semibold text-slate-700/90 hover:text-slate-950 transition duration-150">
-                  Pricing Matrix
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="font-sans text-sm font-semibold text-slate-700/90 hover:text-slate-950 transition duration-150">
-                  Technical FAQ & Release Specs
+                <a href="#claim-sovereignty" className="font-sans text-sm font-semibold text-slate-700/90 hover:text-slate-950 transition duration-150">
+                  Claim Sovereignty
                 </a>
               </li>
             </ul>
@@ -65,7 +60,7 @@ export default function Footer({ onOpenDownload }: FooterProps) {
 
           {/* Column 3: SYSTEMS STATUS & PRIMARY CTA */}
           <div className="md:col-span-4 flex flex-col items-start md:items-end justify-start space-y-5">
-            
+
             {/* Status indicator row */}
             <div className="space-y-2 flex flex-col items-start md:items-end w-full md:w-auto">
               <h4 className="font-mono text-[10px] uppercase font-bold tracking-[0.15em] text-slate-500/90 mr-[-0.15em] text-left md:text-right">
@@ -95,31 +90,13 @@ export default function Footer({ onOpenDownload }: FooterProps) {
         </div>
 
         {/* Bottom bar row */}
-        <div className="border-t border-slate-200/60 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-20">
-          
-          {/* Inner links block */}
-          <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-8 gap-y-2 text-xs font-bold text-slate-500/95">
-            <a href="#legal" className="hover:text-slate-900 transition duration-150">
-              Legal Framework
-            </a>
-            <a href="#privacy" className="hover:text-slate-900 transition duration-150">
-              Privacy Governance
-            </a>
-            <a href="#cookies" className="hover:text-slate-900 transition duration-150">
-              Cookie Schema
-            </a>
-            <a href="#security" className="hover:text-slate-900 transition duration-150">
-              Security Matrix
-            </a>
-          </div>
-
+        <div className="border-t border-slate-200/60 pt-8 flex items-center justify-center relative z-20">
           {/* Copyright notice */}
-          <div className="text-center md:text-right">
+          <div className="text-center">
             <span className="text-[11px] font-semibold text-slate-400/90 tracking-wide">
-              &copy; 2024 Leara.ai Engineering. Built for mission-critical workflows.
+              &copy; 2025 Leara.ai Engineering. Built for mission-critical workflows.
             </span>
           </div>
-
         </div>
 
       </div>
