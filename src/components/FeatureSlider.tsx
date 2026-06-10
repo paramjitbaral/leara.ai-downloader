@@ -30,7 +30,7 @@ import {
   ChevronRight,
   FolderOpen
 } from "lucide-react";
-import { motion, useTransform, useMotionValue } from "motion/react";
+import { motion, useTransform, useScroll } from "motion/react";
 
 interface FeatureSliderProps {
   pinCode?: string;
@@ -45,7 +45,10 @@ export default function FeatureSlider({ pinCode = "1234" }: FeatureSliderProps) 
   const [slideRange, setSlideRange] = useState<number>(0);
 
   // Custom MotionValue to track scroll progress with absolute mathematical perfection
-  const scrollProgressVal = useMotionValue(0);
+  const { scrollYProgress: scrollProgressVal } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
   // Dynamically calculate the precise overflow percentage required to slide all items into view
   useEffect(() => {
@@ -88,32 +91,6 @@ export default function FeatureSlider({ pinCode = "1234" }: FeatureSliderProps) 
     };
   }, []);
 
-  // Hook up high performance scroll tracker
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const totalDistance = rect.height - window.innerHeight;
-
-      if (totalDistance <= 0) return;
-
-      // Calculate standard scroll progress through the pin phase
-      const current = -rect.top;
-      const progress = Math.min(1, Math.max(0, current / totalDistance));
-
-      if (!isNaN(progress)) {
-        scrollProgressVal.set(progress);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollProgressVal]);
-
   // Map vertical scroll progress to horizontal translation of the cards track dynamically.
   // We complete the horizontal translation fully at scroll position 0.85 (85% progress),
   // leaving the remaining 15% phase to hold the track stationary so users can visually absorb the end card
@@ -143,12 +120,6 @@ export default function FeatureSlider({ pinCode = "1234" }: FeatureSliderProps) 
               <FolderOpen className="w-5 h-5 text-slate-400" />
             </div>
           </div>
-          <style>{`
-            @keyframes slideRight {
-              0% { transform: translateX(-100%); }
-              100% { transform: translateX(200%); }
-            }
-          `}</style>
         </div>
       )
     },
