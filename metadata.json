@@ -1,0 +1,6 @@
+{
+  "name": "Leara.ai",
+  "description": "Next-generation, lightning-fast AI-powered desktop code editor designed for developers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
