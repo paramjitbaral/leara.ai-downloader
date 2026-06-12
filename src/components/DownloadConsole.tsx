@@ -56,6 +56,10 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
 
   if (!isOpen) return null;
 
+  const isExternalLink = versionInfo.filename.startsWith('http');
+  const downloadUrl = isExternalLink ? versionInfo.filename : `/${encodeURIComponent(versionInfo.filename)}`;
+  const displayFilename = isExternalLink ? versionInfo.filename.split('/').pop() || "Leara Setup.exe" : versionInfo.filename;
+
   return (
     <div 
       id="download-dialog-overlay"
@@ -98,8 +102,8 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
 
               {/* Main Premium Button */}
               <a
-                href={`/${encodeURIComponent(versionInfo.filename)}`}
-                download={versionInfo.filename}
+                href={downloadUrl}
+                download={displayFilename}
                 id="begin-download-trigger"
                 onClick={startSimulation}
                 className="w-full py-2.5 rounded-lg text-white bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-950 font-medium text-xs flex items-center justify-center gap-2 transition cursor-pointer select-none shadow-sm"
@@ -117,7 +121,7 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
                 <div className="space-y-0.5">
                   <h4 className="font-semibold text-zinc-900 text-sm">Downloading Leara...</h4>
                   <p className="text-[11px] text-zinc-500">
-                    {versionInfo.filename} • {versionInfo.size}
+                    {displayFilename} • {versionInfo.size}
                   </p>
                 </div>
                 <RefreshCw className="w-3.5 h-3.5 text-zinc-500 animate-spin" />
