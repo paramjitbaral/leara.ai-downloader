@@ -15,6 +15,18 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
   const [downloadStep, setDownloadStep] = useState<"form" | "progress" | "complete">("form");
   const [percent, setPercent] = useState(0);
   const [speed, setSpeed] = useState(0.0);
+  const [versionInfo, setVersionInfo] = useState<{ version: string; filename: string; size: string }>({
+    version: "0.0.0",
+    filename: "Leara Core Setup 0.0.0.exe",
+    size: "143 MB"
+  });
+
+  useEffect(() => {
+    fetch("/version.json")
+      .then(res => res.json())
+      .then(data => setVersionInfo(data))
+      .catch(err => console.error("Failed to load version info:", err));
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -74,7 +86,7 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
                   <svg viewBox="0 0 24 24" className="w-3 h-3 text-zinc-500" fill="currentColor">
                     <path d="M0 3.449L9.75 2.1v9.45H0V3.449zM0 12.45h9.75v9.45L0 20.551v-8.1zM10.8 1.95L24 0v11.55H10.8V1.95zm13.2 10.5v11.55L10.8 22.05v-9.6H24z" />
                   </svg>
-                  Windows x64 <span className="text-zinc-400">•</span> 143 MB
+                  Windows x64 <span className="text-zinc-400">•</span> {versionInfo.size}
                 </div>
                 <h3 className="text-zinc-900 text-lg font-semibold tracking-tight leading-tight">
                   Get Leara for Windows
@@ -86,8 +98,8 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
 
               {/* Main Premium Button */}
               <a
-                href="/Leara%20Core%20Setup%200.0.0.exe"
-                download="Leara Core Setup 0.0.0.exe"
+                href={`/${encodeURIComponent(versionInfo.filename)}`}
+                download={versionInfo.filename}
                 id="begin-download-trigger"
                 onClick={startSimulation}
                 className="w-full py-2.5 rounded-lg text-white bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-950 font-medium text-xs flex items-center justify-center gap-2 transition cursor-pointer select-none shadow-sm"
@@ -105,7 +117,7 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
                 <div className="space-y-0.5">
                   <h4 className="font-semibold text-zinc-900 text-sm">Downloading Leara...</h4>
                   <p className="text-[11px] text-zinc-500">
-                    Leara Core Setup 0.0.0.exe • 143 MB
+                    {versionInfo.filename} • {versionInfo.size}
                   </p>
                 </div>
                 <RefreshCw className="w-3.5 h-3.5 text-zinc-500 animate-spin" />
