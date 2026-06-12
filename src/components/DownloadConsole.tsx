@@ -90,7 +90,7 @@ export default function DownloadConsole({ isOpen, onClose }: DownloadConsoleProp
                   <svg viewBox="0 0 24 24" className="w-3 h-3 text-zinc-500" fill="currentColor">
                     <path d="M0 3.449L9.75 2.1v9.45H0V3.449zM0 12.45h9.75v9.45L0 20.551v-8.1zM10.8 1.95L24 0v11.55H10.8V1.95zm13.2 10.5v11.55L10.8 22.05v-9.6H24z" />
                   </svg>
-                  Windows x64 <span className="text-zinc-400">•</span> {versionInfo.size}
+                  Windows x64 <span className="text-zinc-400">•</span> v{versionInfo.version} <span className="text-zinc-400">•</span> {versionInfo.size}
                 </div>
                 <h3 className="text-zinc-900 text-lg font-semibold tracking-tight leading-tight">
                   Get Leara for Windows
